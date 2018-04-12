@@ -5,12 +5,20 @@
         <Console name="Console" target="SYSTEM_OUT">
             <PatternLayout pattern="%msg%n"/>
         </Console>
+
+        <File name="aFileAppender" fileName="logs/test.log">
+            <PatternLayout>
+                <Pattern>%msg%n</Pattern>
+            </PatternLayout>
+        </File>
+
     </Appenders>
 
     <Loggers>
 
         <logger name="pukteam.course.logging.examples.basic.AClassThatDoesSomething" level="debug">
             <AppenderRef ref="Console"/>
+            <AppenderRef ref="aFileAppender"/>
         </logger>
 
         <logger name="pukteam.course.logging.examples.basic.Main" level="info">
