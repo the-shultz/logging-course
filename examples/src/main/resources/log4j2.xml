@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Configuration status="WARN">
+<Configuration status="warn" monitorInterval="5">
 
     <Appenders>
 
@@ -33,7 +33,7 @@
             <AppenderRef ref="creatorAppender"/>
         </logger>
 
-        <!--due to additivity=false (the default) these logs will NOT be printed to console-->
+        <!--change it to TRACE after a while...-->
         <logger name="pukteam.course.logging.examples.advance.sort" level="DEBUG" additivity="true">
             <AppenderRef ref="sorterAppender"/>
         </logger>
@@ -42,6 +42,7 @@
         to move upper in the inheritance chain. so it also adds here the console appender-->
         <logger name="pukteam.course.logging.examples.advance" additivity="false">
             <AppenderRef ref="allLogsFile"/>
+            <AppenderRef ref="Console"/>
         </logger>
 
         <logger name="pukteam.course.logging.examples.advance.MainSorter" level="INFO" additivity="false">

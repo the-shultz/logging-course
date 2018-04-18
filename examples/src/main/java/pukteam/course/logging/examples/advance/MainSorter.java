@@ -35,9 +35,19 @@ public class MainSorter {
             // test by native stream sort
             testNativeStreamSort(integersCollection);
 
+            sleepForAWhile(5000);
+            log.info("================================");
             ThreadContext.pop();
         }
         ThreadContext.clearAll();
+    }
+
+    private static void sleepForAWhile(int time) {
+        try {
+            Thread.sleep(time);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
     private static void testNativeStreamSort(Collection<Integer> integersCollection1) {
