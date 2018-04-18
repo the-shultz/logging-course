@@ -19,6 +19,12 @@
             </PatternLayout>
         </File>
 
+        <File name="allLogsFile" fileName="logs/all.log" append="false">
+            <PatternLayout>
+                <Pattern>%d{HH:mm:ss.SSS} [%t] %-5p %logger - %msg%n</Pattern>
+            </PatternLayout>
+        </File>
+
     </Appenders>
 
     <Loggers>
@@ -28,8 +34,15 @@
         </logger>
 
         <!--due to additivity=false (the default) these logs will NOT be printed to console-->
-        <logger name="pukteam.course.logging.examples.advance.sort" level="TRACE" additivity="false">
+        <logger name="pukteam.course.logging.examples.advance.sort" level="TRACE" additivity="true">
             <AppenderRef ref="sorterAppender"/>
+        </logger>
+
+        <!--this logger definition stands as a base for creator and sorter, but due to additivity false it prevents the loggers
+        to move upper in the inheritance chain. so it also adds here the console appender-->
+        <logger name="pukteam.course.logging.examples.advance" additivity="false">
+            <AppenderRef ref="Console"/>
+            <AppenderRef ref="allLogsFile"/>
         </logger>
 
         <logger name="pukteam.course.logging.examples.advance.MainSorter" level="INFO" additivity="false">
