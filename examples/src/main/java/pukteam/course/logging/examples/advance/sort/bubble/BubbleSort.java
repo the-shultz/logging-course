@@ -25,13 +25,20 @@ public class BubbleSort implements SortCollection {
             for(int i = j+1 ; i < result.size() ; i++){
                 E laterElement = result.get(i);
                 E formerElement = result.get(j);
-                log.trace("Comparing between " + formerElement + " and " + laterElement + " ...");
+                //log.trace("Comparing between " + formerElement + " and " + laterElement + " ...");
+                log.trace("Comparing between {} and  {} ...", formerElement, laterElement);
                 if(laterElement.compareTo(formerElement) < 0){
                     log.trace("Later (" + laterElement + ") is smaller then former (" + formerElement + ")...");
                     log.trace("Swapping them between " + j + " and  " + i);
                     result.set(j, laterElement);
                     result.set(i, formerElement);
-                    log.trace("Collection after swapping: " + result);
+                    //log.trace("Collection after swapping: " + result);
+                    log.trace("Collection after swapping: {} ", result);
+
+                    // or, the whole logging could have been replaced with the below:
+                    int finalI = i;
+                    int finalJ = j;
+                    log.trace("{}", () -> buildDebugString(finalI, finalJ, laterElement, formerElement, result));
                 }
             }
         }
@@ -40,5 +47,13 @@ public class BubbleSort implements SortCollection {
         log.debug("Sorted collection in: " + Duration.between(start, end).toNanos() + " nano seconds...");
 
         return result;
+    }
+
+    private <E> String buildDebugString(int i, int j, E later, E former, List<E> result) {
+        StringBuilder sb = new StringBuilder();
+        sb.append("Later (").append(later).append(") is smaller then former (").append(former).append(")...").append("\n")
+                .append("Swapping them between ").append(j).append(" and ").append(i).append("\n")
+                .append("Collection after swapping: ").append(result).append("\n");
+        return sb.toString();
     }
 }
